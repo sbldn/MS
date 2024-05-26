@@ -19,7 +19,6 @@ function setup() {
     let saturation = random(50, 100); // Generar una saturación aleatoria
     let brightness = random(50, 100); // Generar un brillo aleatorio
     let col = color(hue, saturation, brightness); 
-    
     let heart = new Heart(proportions[i], col, 1, previousHeart); // Pasar la referencia de la esfera contenedora
     hearts.push(heart);
     previousHeart = heart; 
@@ -101,12 +100,49 @@ class Heart {
       }
       this.pulse();
   }
+
+  fade() {
+    
+    // diameter=400;
+    // let porcentaje=0.7
+    // let col=color(0,75,255)
+    
+    // console.log(saturation(col))
+    // fill(col);
+    //  ellipse(200, 200, diameter, diameter);
+
+
+    let porcentaje=0.001
+    // fill(hue(this.col), saturation(this.col), brightness(this.col));
+    // ellipse(this.x, this.y, this.diameter, this.diameter);
+    // console.log(porcentaje)
+    // console.log(diameter*0.1)
+    for (let i = this.diameter; i >= this.diameter * porcentaje; i--) {
+      
+        let alphaValue = map(i, this.diameter, this.diameter *porcentaje, 0, 255*porcentaje);
+        let degrade=map(i,this.diameter, this.diameter *porcentaje,saturation(this.col)*0.7,saturation(this.col))
+        
+        fill(hue(this.col), degrade, brightness(this.col),alphaValue);
+        // console.log("asdas")
+        ellipse(this.x, this.y, i, i);
+    }
+  // fill(0, 70, 255);
+  // ellipse(200, 200, this.diameter * porcentaje, this.diameter * porcentaje);
+
+}
+    
+
+
   display() {
     noStroke();
-    fill(this.col);
-    ellipse(this.x, this.y, this.diameter, this.diameter);
+    // fill(this.col);
+    
+
+    // ellipse(this.x, this.y, this.diameter, this.diameter);
+    this.fade();
   }
 }
+
 
 
 function fibonacciVolumeDivisions(totalVolume, numDivisions) {

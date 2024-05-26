@@ -36,7 +36,7 @@ class Heart {
     this.diameter = diameter;
     this.angle = 0;
     this.angleSpeed = 0.1;
-
+    porcentaje=0.7
     this.col = color;
     this.tx = random(10) * 0.1;
     this.ty = random(10) * 0.1;
