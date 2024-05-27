@@ -1,0 +1,1716 @@
+[
+    {
+        "Date": "2024-05-16 12:20:17",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 144,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:20:19",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 144,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:20:22",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 146,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:20:24",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 145,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:20:26",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 145,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:22:50",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 146,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:22:52",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 146,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:22:54",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 146,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:22:57",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 146,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:23:16",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 148,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:23:18",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 148,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:23:21",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 147,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:24:31",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 137,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:24:48",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 136,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:25:38",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 125,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-16 12:26:30",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 126,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-16 12:44:44",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 125,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-16 12:51:09",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 100,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-16 13:10:40",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 79,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-16 13:18:14",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 79,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-16 13:18:53",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 79,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-16 13:21:15",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 75,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-16 13:27:09",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 77,
+        "UVIndex": 6.0
+    },
+    {
+        "Date": "2024-05-16 14:27:10",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 103,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-16 15:27:11",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 135,
+        "UVIndex": 6.0
+    },
+    {
+        "Date": "2024-05-16 16:27:12",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 126,
+        "UVIndex": 6.0
+    },
+    {
+        "Date": "2024-05-16 17:27:13",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 135,
+        "UVIndex": 7.0
+    },
+    {
+        "Date": "2024-05-16 18:27:14",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 201,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-16 19:27:16",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 184,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-16 20:27:18",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 196,
+        "UVIndex": 1.0
+    },
+    {
+        "Date": "2024-05-16 21:27:20",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 721,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-16 22:27:22",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 1017,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-16 23:27:23",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 1017,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 00:27:25",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 1017,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 01:27:26",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 1017,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 02:27:27",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 1018,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 03:27:28",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 1017,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 04:27:29",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 1015,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 05:27:30",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 20,
+        "Light": 1017,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 06:27:31",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 20,
+        "Light": 999,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 07:27:32",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 20,
+        "Light": 316,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 08:27:33",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 20,
+        "Light": 78,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-17 09:27:35",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 76,
+        "UVIndex": 2.0
+    },
+    {
+        "Date": "2024-05-17 10:27:36",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 93,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-17 11:27:38",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 137,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-17 12:27:39",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 102,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-17 13:27:40",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 73,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-17 14:27:41",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 90,
+        "UVIndex": 6.0
+    },
+    {
+        "Date": "2024-05-17 15:27:42",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 87,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-17 16:27:44",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 154,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-17 17:27:45",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 87,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-17 19:58:46",
+        "Location": {
+            "lat": 40.4582,
+            "lng": -3.6724
+        },
+        "Temperature": 26,
+        "Light": 109,
+        "UVIndex": 2.0
+    },
+    {
+        "Date": "2024-05-17 20:58:48",
+        "Location": {
+            "lat": 40.4582,
+            "lng": -3.6724
+        },
+        "Temperature": 26,
+        "Light": 111,
+        "UVIndex": 1.0
+    },
+    {
+        "Date": "2024-05-17 23:24:15",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 7,
+        "Light": 610,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-18 00:24:17",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": -25,
+        "Light": 0,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-18 00:24:42",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": -25,
+        "Light": 0,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-18 00:25:50",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": -25,
+        "Light": 0,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-18 00:27:42",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": -25,
+        "Light": 0,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-18 00:28:32",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": -25,
+        "Light": 0,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-18 00:34:34",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 226,
+        "Light": 673,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-18 10:38:16",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 215,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:38:28",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 213,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:42:48",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 217,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:42:59",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 216,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:43:10",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 214,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:43:21",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:43:32",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 216,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:48:39",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 217,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:48:50",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 217,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:49:03",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:49:14",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 217,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:49:25",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 217,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:49:36",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 217,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:49:47",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 217,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:49:58",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:50:09",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:50:20",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:50:31",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:50:42",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 219,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:51:12",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 217,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:51:23",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:53:05",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 219,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:53:16",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 220,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:53:27",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:55:05",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 219,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:55:16",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 219,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:58:00",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:58:11",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 221,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:58:22",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:58:33",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:58:44",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 218,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 10:58:55",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 217,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-18 11:01:39",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 218,
+        "UVIndex": 6.0
+    },
+    {
+        "Date": "2024-05-18 11:34:46",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 204,
+        "UVIndex": 7.0
+    },
+    {
+        "Date": "2024-05-18 12:34:49",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 141,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-18 12:59:13",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 122,
+        "UVIndex": 6.0
+    },
+    {
+        "Date": "2024-05-18 13:23:34",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 189,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-18 13:35:27",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 25,
+        "Light": 170,
+        "UVIndex": 7.0
+    },
+    {
+        "Date": "2024-05-18 14:23:10",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 121,
+        "UVIndex": 10.0
+    },
+    {
+        "Date": "2024-05-18 14:38:21",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 25,
+        "Light": 128,
+        "UVIndex": 10.0
+    },
+    {
+        "Date": "2024-05-18 15:18:22",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 25,
+        "Light": 142,
+        "UVIndex": 10.0
+    },
+    {
+        "Date": "2024-05-18 16:18:26",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 27,
+        "Light": 176,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-18 17:18:42",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 144,
+        "UVIndex": 8.0
+    },
+    {
+        "Date": "2024-05-18 18:30:53",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 25,
+        "Light": 202,
+        "UVIndex": 6.0
+    },
+    {
+        "Date": "2024-05-18 19:33:53",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 25,
+        "Light": 214,
+        "UVIndex": 2.0
+    },
+    {
+        "Date": "2024-05-18 20:38:00",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 25,
+        "Light": 326,
+        "UVIndex": 1.0
+    },
+    {
+        "Date": "2024-05-18 21:38:02",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 25,
+        "Light": 886,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-18 22:38:04",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 998,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-18 23:38:05",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 998,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-19 00:38:07",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 994,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-19 01:38:08",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 995,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-19 02:38:09",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 1017,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-19 03:38:11",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 1017,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-19 04:38:12",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 1017,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-19 05:38:13",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 1016,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-19 06:38:14",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 844,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-19 07:38:16",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 195,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-19 08:38:17",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 106,
+        "UVIndex": 1.0
+    },
+    {
+        "Date": "2024-05-19 08:54:54",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 178,
+        "UVIndex": 1.0
+    },
+    {
+        "Date": "2024-05-19 09:54:56",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 122,
+        "UVIndex": 2.0
+    },
+    {
+        "Date": "2024-05-20 12:51:21",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 211,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-20 13:15:45",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 200,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-20 13:51:10",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 188,
+        "UVIndex": 7.0
+    },
+    {
+        "Date": "2024-05-20 14:51:13",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 184,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-20 15:51:15",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 167,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-20 16:51:16",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 252,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-20 17:51:18",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 251,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-20 18:51:19",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 368,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-20 19:51:20",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 440,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-20 20:51:21",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 788,
+        "UVIndex": 1.0
+    },
+    {
+        "Date": "2024-05-20 21:51:22",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 990,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-20 22:51:24",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 993,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-20 23:51:26",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 643,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 00:10:28",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 667,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 00:46:05",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 712,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 01:01:49",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 599,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 02:01:57",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 1010,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 04:38:48",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 1012,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 05:38:49",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 1012,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 06:38:50",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 999,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 07:38:51",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 330,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 08:38:53",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 490,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 09:38:55",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 21,
+        "Light": 140,
+        "UVIndex": 2.0
+    },
+    {
+        "Date": "2024-05-21 10:37:12",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 168,
+        "UVIndex": 2.0
+    },
+    {
+        "Date": "2024-05-21 11:12:48",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 168,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-21 11:27:31",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 164,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-21 11:38:39",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 179,
+        "UVIndex": 6.0
+    },
+    {
+        "Date": "2024-05-21 12:03:16",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 273,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-21 12:11:27",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 234,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-21 12:31:18",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 185,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-21 12:41:18",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 153,
+        "UVIndex": 9.0
+    },
+    {
+        "Date": "2024-05-21 13:41:20",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 115,
+        "UVIndex": 6.0
+    },
+    {
+        "Date": "2024-05-21 14:41:22",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 183,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-21 15:41:23",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 165,
+        "UVIndex": 5.0
+    },
+    {
+        "Date": "2024-05-21 16:41:25",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 22,
+        "Light": 150,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-21 17:41:26",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 250,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-21 18:06:34",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 25,
+        "Light": 557,
+        "UVIndex": 4.0
+    },
+    {
+        "Date": "2024-05-21 19:06:36",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 273,
+        "UVIndex": 3.0
+    },
+    {
+        "Date": "2024-05-21 20:06:37",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 24,
+        "Light": 342,
+        "UVIndex": 1.0
+    },
+    {
+        "Date": "2024-05-21 21:06:39",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 647,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 22:06:40",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 23,
+        "Light": 680,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 22:06:22",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 232,
+        "Light": 680,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "2024-05-21 22:06:22",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 2,
+        "Light": 680,
+        "UVIndex": 0.0
+    }
+,
+    {
+        "Date": "2024-05-21 22:06:222",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 2,
+        "Light": 680,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "120",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 2222,
+        "Light": 680,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "120",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 2222,
+        "Light": 111,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "111",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 2222,
+        "Light": 111,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "1",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 2222,
+        "Light": 111,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "12",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 2222,
+        "Light": 111,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "13",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 2222,
+        "Light": 111,
+        "UVIndex": 0.0
+    },
+    {
+        "Date": "14",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 2222,
+        "Light": 111,
+        "UVIndex": 0.0
+    }
+
+
+
+]

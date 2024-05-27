@@ -4,17 +4,30 @@ let it=5
 const goldenP=0.5*(1+Math.sqrt(5))-1;
 let proportions=[]
 
+let data;
+
+//Get the information of the JSON and print the last value of the file
+function loadData() {
+  loadJSON('/data/data.json', (json) => {
+    data = json;
+    console.log(data[Object.keys(data).length-1]);
+  });
+}
+
+//Load_data when a key es pressed for testing
+function keyPressed() {
+  if (key === 'r' || key === 'R') {
+    loadData(); // Recarga los datos al presionar 'r'
+  }
+}
+
 function setup() {
+  
   createCanvas(800, 600);
   colorMode(HSB);
-
   proportions=fibonacciVolumeDivisions(circleSize,it);
-
   let previousHeart = null;
-
-
   for (let i = 0; i < it; i++) {
-  
     let hue = random(360); // Generar un tono aleatorio
     let saturation = random(50, 100); // Generar una saturación aleatoria
     let brightness = random(50, 100); // Generar un brillo aleatorio
@@ -102,21 +115,9 @@ class Heart {
   }
 
   fade() {
-    
-    // diameter=400;
-    // let porcentaje=0.7
-    // let col=color(0,75,255)
-    
-    // console.log(saturation(col))
-    // fill(col);
-    //  ellipse(200, 200, diameter, diameter);
-
-
-    let porcentaje=0.001
+    let porcentaje=0.01
     // fill(hue(this.col), saturation(this.col), brightness(this.col));
     // ellipse(this.x, this.y, this.diameter, this.diameter);
-    // console.log(porcentaje)
-    // console.log(diameter*0.1)
     for (let i = this.diameter; i >= this.diameter * porcentaje; i--) {
       
         let alphaValue = map(i, this.diameter, this.diameter *porcentaje, 0, 255*porcentaje);
@@ -128,32 +129,22 @@ class Heart {
     }
   // fill(0, 70, 255);
   // ellipse(200, 200, this.diameter * porcentaje, this.diameter * porcentaje);
-
 }
     
-
-
   display() {
     noStroke();
-    // fill(this.col);
-    
-
-    // ellipse(this.x, this.y, this.diameter, this.diameter);
     this.fade();
   }
 }
 
 
-
+/* Create the divisions based ob Fibo distribution*/
 function fibonacciVolumeDivisions(totalVolume, numDivisions) {
   let aux=totalVolume
   let seccuenceV=[totalVolume]
   for(let i=numDivisions;i>=2;i--){
-    // console.log(i)
     aux=aux*goldenP;
     seccuenceV.push(aux)
-    
 }
-  // console.log(seccuenceV)
 return seccuenceV;
 }
