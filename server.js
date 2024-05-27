@@ -3,12 +3,12 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Servir archivos estáticos desde la raíz
-app.use(express.static(__dirname));
+// Servir archivos estáticos desde la carpeta 'p5js'
+app.use(express.static(path.join(__dirname, 'p5js')));
 
 // Endpoint para servir index.html desde la raíz
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'p5js', 'index.html'));
 });
 
 // Endpoint para servir data.json
