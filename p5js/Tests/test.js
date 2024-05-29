@@ -1,19 +1,8 @@
 let hearts = [];
 const circleSize = 500;
-const it = 5;
+const it = 50;
 const goldenP = 0.5 * (1 + Math.sqrt(5)) - 1;
 let proportions = fibonacciVolumeDivisions(circleSize, it);
-
-let data;
-
-//Get the information of the JSON and print the last value of the file
-function loadData() {
-  loadJSON('/data/data.json', (json) => {
-    data = json;
-    console.log(data[Object.keys(data).length-1]);
-  });
-}
-
 
 function setup() {
   createCanvas(800, 600);
@@ -24,7 +13,7 @@ function setup() {
     let brightness = random(50, 100);
     let col = color(hue, saturation, brightness);
     let bpm = random(140, 150);
-    let heart = new Heart(proportions[i], col, 0,proportions[i]*0.01,i);
+    let heart = new Heart(proportions[i], col, 0);
     hearts.push(heart);
   }
   
@@ -35,15 +24,12 @@ function setup() {
 
 function keyPressed() {
   if (key === 'r' || key === 'R') {
-    let rh=random(40,200)
+    
     //loadData(); // Recarga los datos al presionar 'r'
      for (let heart of hearts) {
-       let asdadsa=random(rh-5,rh+5);
+       let asdadsa=random(30,200);
     heart.bpmc(asdadsa); 
   }
-  }
-  if (key === 'd' || key === 'D') {
-    loadData(); // Recarga los datos al presionar 'd'
   }
 }
 
@@ -65,7 +51,7 @@ function drawHearts() {
 }
 
 class Heart {
-  constructor(baseDiameter, col, bpm, noiseIncrement,main) {
+  constructor(baseDiameter, col, bpm) {
     this.baseDiameter = baseDiameter;
     this.diameter = baseDiameter;
     this.col = col;
@@ -74,8 +60,8 @@ class Heart {
     this.phase = 0;
     this.tx = random(10) * 0.1;
     this.ty = random(10) * 0.1;
-    this.noiseIncrement = noiseIncrement;
-    this.limitRadius = this.diameter / 2 + this.diameter / 2 * 0.005;
+    this.noiseIncrement = 10;
+    this.limitRadius = this.diameter / 2 + this.diameter / 2 * 0.02;
     this.directionX = 1;
     this.directionY = 1;
     this.angle = 0;
@@ -84,7 +70,6 @@ class Heart {
     this.centerY = height / 2;
     this.x = this.centerX; // <-- Inicializa this.x
     this.y = this.centerY; // <-- Inicializa this.y
-    this.main=main;
   }
 
   pulse() {
@@ -95,7 +80,7 @@ class Heart {
 
   calculateDiameter(t) {
     let pqrst = this.pqrstSignal(t);
-    return lerp(this.diameter, this.baseDiameter * (0.95 + 0.1 * pqrst), 0.01);
+    return lerp(this.diameter, this.baseDiameter * (0.95 + 0.1 * pqrst), 0.05);
   }
   
   pqrstSignal(t) {
@@ -160,12 +145,6 @@ class Heart {
  
   
   fade() {
-    if(this.main==0){
-      //onsole.log(this.main)
-          fill(this.col);
-    
-    ellipse(this.x, this.y, this.baseDiameter,this.baseDiameter);
-  }
     for (let i = this.diameter; i >= this.diameter * 0.01; i--) {
         let alphaValue = map(i, this.diameter, this.diameter * 0.01, 0, 255 * 0.01);
         let degrade = map(i, this.diameter, this.diameter * 0.01, saturation(this.col) * 0.7, saturation(this.col));
