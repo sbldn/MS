@@ -1,202 +1,112 @@
-let hearts = [];
-const TIME_INCREMENT = 0.01;
+const TIME_INCREMENT = 0.0001;
+let walkers=[]
 
-const circleSize = 500;
+const circleSize = 350;
 const it = 5;
 const goldenP = 0.5 * (1 + Math.sqrt(5)) - 1;
 let proportions = fibonacciVolumeDivisions(circleSize, it);
 
-let data;
-
-let temperature=0;
-let timer = 0;
-let t=0;
-cIninital=[]
-cFinal=[]
-
-p5.disableFriendlyErrors = true;
-
-//Get the information of the JSON and print the last value of the file
-function loadData() {
-  loadJSON('/data/data.json', (json) => {
-    data = json;
-    console.log(data[Object.keys(data).length-1]);
-  });
-}
-
 
 function setup() {
-  createCanvas(800, 600);
-  colorMode(HSB);
-  cIninital=ColorP(temperature);
-  cFinal=ColorP(temperature);
+  createCanvas(400, 400);
+  
+  
   for (let i = 0; i < it; i++) {
-    let hue = random(360);
-    let saturation = random(50, 100);
-    let brightness = random(50, 100);
-    let col = color(hue, saturation, brightness);
-    let bpm = random(140, 150);
-    let heart = new Heart(proportions[i], cIninital[i],cFinal[i], 0,10,i,0);
-    hearts.push(heart);
+  
+  let hue = random(360);
+  let saturation = random(50, 100);
+  let brightness = random(50, 100);
+  let col = color(hue, saturation, brightness);
+
+  let bpm = random(1000, 12000);
     
+  let walker = new Walker(diameterCircle=proportions[i],
+                      noiseWalker=10,
+                      limitDiaPer=5-map(i,0,it,5,3),
+                      amplitudPulso=1,
+                      factorBPM=bpm,
+                      colorH=col,
+                      main=i);
+    walkers.push(walker)
   }
   frameRate(24);
-  
-  // Llama a la función para actualizar el estado de los corazones
-  requestAnimationFrame(update);
 }
 
-function keyPressed() {
-  if (key === 'r' || key === 'R') {
-    let rh=random(40,200)
-    //loadData(); // Recarga los datos al presionar 'r'
-     for (let heart of hearts) {
-       let newbpm=random(rh-5,rh+5);
-    heart.bpmc(newbpm); 
-  }
-  }
-  if (key === 'd' || key === 'D') {
-    loadData(); // Recarga los datos al presionar 'd'
-  }
-}
-
-function update() {
-  
-  t += 0.01;
+function draw() {
+  background(220);
   drawHearts();
-  if (millis() - timer > 5000) {
-    temperature=temperature+1;
-   // cFinal=ColorP(temperature);
-   /*for (let i=0;i <hearts.length;i++) {
-      hearts[0].colorU(cFinal[i]);// <-- Debería ser display() en lugar de move()
-    }*/
-
-    console.log(t+" "+temperature)
-   timer = millis();
- }
- 
-  // Llama a la función nuevamente para actualizar el estado en el siguiente cuadro
-  requestAnimationFrame(update);
 }
 
 function drawHearts() {
   background(0);
-  for (let heart of hearts) {
-    heart.tc(t);
-    heart.move(); // <-- Llama al método move() en lugar de display()
-    heart.display(); // <-- Debería ser display() en lugar de move()
+  for (let walker of walkers) {
+    walker.move();
+    walker.update();
   }
 }
-/*
-Move
-noiseIncrement - Valor entre 0 y 100 - Mover
-perLimit - Porcentaje del radio que se puede mover la circunferencia entre 0
-*/
-class Heart {
-  constructor(baseDiameter, col,colF, bpm, noiseIncrement,main,t) {
-    this.baseDiameter = baseDiameter;
-    this.diameter = baseDiameter;
-    this.col = col;
-    this.bpm = bpm;
-    this.period = 60 / this.bpm;
-    this.phase = 0;
-    
 
-    this.directionX = 1;
-    this.directionY = 1;
-    this.angle = 0;
-    this.angleSpeed = 0.1;
+/*
+diameterCircle - Diametro del circulo a dibujar
+noiseWalker - Factor del Movimiento del perlin walker
+limitDiaPer - porcentaje de movimiento permitido para el noise walker
+
+amplitudPulso - 1 a 100 cuando es en porcentaje lo que se expandira el ciruclo en cada latido
+factorBPM - BPM
+
+ColorH - Color de la seccion
+
+Main - ID, idenficar el primer circulo
+*/
+
+class Walker {
+  constructor(diameterCircle,noiseWalker,limitDiaPer,amplitudPulso,factorBPM,colorH,main) {
     this.centerX = width / 2;
     this.centerY = height / 2;
+    this.diameterCircle=diameterCircle;
+    this.x=this.centerX;
+    this.y=this.centerY;
+    this.tx = 0;
+	this.ty = 10000;
+    this.noiseWalker=noiseWalker/100;
+    this.limitRad=(this.diameterCircle+this.diameterCircle*limitDiaPer/100)/2
+    this.directionX =1;
+    this.directionY = 1;
     
+    this.angle = 0;
+    this.originalDiameter=this.diameterCircle;
+    this.amplitudPulso=amplitudPulso;
+    this.factorBPM=factorBPM
+    
+    this.colorH=colorH;
     this.main=main;
-    this.colF=colF;
-    this.t=t;
-
-    this.noiseIncrement = noiseIncrement;
-    this.perLimit = this.diameter+2*this.diameter/100; 
-    this.tx = random(1000);
-    this.ty = random(1000);
-    this.x = this.centerX; // <-- Inicializa this.x
-    this.y = this.centerY; // <-- Inicializa this.y
-
-  }
-
-  pulse() {
-    let time = millis() / 1000;
-    let t = (time / this.period) % 1;
-    this.diameter = this.calculateDiameter(t);
-  }
-
-  calculateDiameter(t) {
-    let pqrst = this.pqrstSignal(t);
-    return lerp(this.diameter, this.baseDiameter * (0.95 + 0.1 * pqrst), 0.01);
-  }
-  tc(time){
-    this.t=time;
-  }
-  // colorU(newColor){
-  //   this.col=this.colorF;
-  //   this.colorF=newColor;
-  // }
-  pqrstSignal(t) {
-    if (t < 0.1) {
-      return 0.1 - 10 * (t - 0.05) ** 2;
-    } else if (t < 0.3) {
-      return 1;
-    } else if (t < 0.4) {
-      return 1 - 5 * (t - 0.35) ** 2;
-    } else if (t < 0.5) {
-      return 0.5;
-    } else if (t < 0.7) {
-      return 0.5 - 2.5 * (t - 0.6) ** 2;
-    } else {
-      return 0;
-    }
-  }
-
-  bpmc(bpmin){
-    this.bpm=bpmin;
-        this.period = 60 / this.bpm;
   }
   
-  display() {
-    noStroke();
-    this.fade();
-  }
-
-  move() {
-    const noiseAmplitude = map(this.noiseIncrement, 0, 100, 0, 1);
-    const noiseX = noise(this.tx) * 2 - 1; // Escalar el ruido a un rango de -1 a 1
-    const noiseY = noise(this.ty) * 2 - 1; // Escalar el ruido a un rango de -1 a 1
-    this.x += noiseX * noiseAmplitude * this.directionX;
-    this.y += noiseY * noiseAmplitude * this.directionY;
+  pulse() {
+    this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
+    this.angle += TIME_INCREMENT*this.factorBPM;
+  
+   
+}
+  
+  
+  
+  move(){
+    this.pulse();
+    this.x =this.x+map(noise(this.tx), 0, 1, -1, 1)*this.noiseWalker*this.directionX;
+    this.y =this.y+map(noise(this.ty), 0, 1, -1, 1)*this.noiseWalker*this.directionY;
     this.tx += TIME_INCREMENT;
     this.ty += TIME_INCREMENT;
-    const dSquared = this.distSquared(this.x, this.y, this.centerX, this.centerY);
-    const limitRadius = this.perLimit/2 - this.diameter / 2;
-    const limitRadiusSquared = limitRadius * limitRadius;
-    if (dSquared > limitRadiusSquared) {
-      const angle = atan2(this.y - this.centerY, this.x - this.centerX);
-      this.x = this.centerX + cos(angle) * limitRadius;
-      this.y = this.centerY + sin(angle) * limitRadius;
-      if (Math.abs(this.x - this.centerX) >= Math.abs(this.y - this.centerY)) {
-        this.directionX *= -1;
-      } else {
-        this.directionY *= -1;
-      }
+    const dSquared = Math.sqrt(distSquared(this.x, this.y, this.centerX, this.centerY));
+    if (dSquared >= this.limitRad-this.diameterCircle/2 ){
+      const angle = Math.atan2(this.y - this.centerY, this.x - this.centerX);
+      const newX = this.centerX + Math.cos(angle) * ((this.diameterCircle / 2) - 1);
+      const newY = this.centerY + Math.sin(angle) * ((this.diameterCircle / 2) - 1); // Restar 1 para mantener la esfera dentro del límite
+    // Cambiar aleatoriamente la dirección
+      this.directionX = random(-1, 1);
+      this.directionY = random(-1, 1);
     }
-    this.pulse();
   }
-
-// Función para calcular la distancia al cuadrado entre dos puntos
-distSquared(x1, y1, x2, y2) {
-    const dx = x2 - x1;
-    const dy = y2 - y1;
-    return dx * dx + dy * dy;
-}
-
-
+  
   fade() {
     // fill(this.col)
     // ellipse(50, 50, 50,1);
@@ -204,23 +114,40 @@ distSquared(x1, y1, x2, y2) {
     // ellipse(70, 70, 50);
     if(this.main==0){
       //onsole.log(this.main)
-      fill(hue(this.col), saturation(this.col), brightness(this.col), 1);
-      ellipse(width/2, height/2, this.baseDiameter*2);
+      fill(hue(this.colorH), saturation(this.colorH), brightness(this.colorH), 1);
+      ellipse(width/2, height/2, this.diameterCircle);
       // fill(this.col);
       // ellipse(this.x, this.y, this.baseDiameter,this.baseDiameter);
   }
-    for (let i = this.diameter; i >= this.diameter * 0.01; i--) {
-        let alphaValue = map(i, this.diameter, this.diameter * 0.01, 0, 255 * 0.01);
-        let degrade = map(i, this.diameter, this.diameter * 0.01, saturation(this.col) * 0.7, saturation(this.col));
+    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.01; i--) {
+        let alphaValue = map(i, this.diameterCircle, this.diameterCircle * 0.01, 0, 255 * 0.01);
+        let degrade = map(i, this.diameterCircle, this.diameterCircle * 0.01, saturation(this.colorH) * 0.7, saturation(this.colorH));
         
-        let colorC=color(lerpColorBetweenTwoColors(this.col, this.colF, noise(this.t)));
+        let colorC=color(lerpColorBetweenTwoColors(this.colorH, this.colorH, noise(this.tx)));
         // fill(this.col)
         fill(hue(colorC), degrade, brightness(colorC), alphaValue);
-        ellipse(this.x, this.y, i, i);
+        ellipse(this.x, this.y, i);
         // fill(colorC)
         // ellipse(90, 90, 50);
     }
   }
+
+  
+  
+  update(){
+     noStroke();
+    this.fade();
+   // ellipse(width/2, height/2, this.originalDiameter); testing
+   // noStroke();
+    //fill(this.colorH);
+   // ellipse(this.x, this.y, this.diameterCircle);
+  }
+}
+
+function distSquared(x1, y1, x2, y2) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  return dx * dx + dy * dy;
 }
 
 function fibonacciVolumeDivisions(totalVolume, numDivisions) {
@@ -233,7 +160,6 @@ function fibonacciVolumeDivisions(totalVolume, numDivisions) {
   return seccuenceV;
 }
 
-// Función para interpolar entre dos colores basados en el tiempo
 function lerpColorBetweenTwoColors(color1, color2, time) {
   return lerpColor(color1, color2, noise(time*.8))
 }
@@ -264,6 +190,3 @@ function lerpcolor(colorI,colorF,t){
   return resultado
   
 }
-
-
-
