@@ -1,22 +1,29 @@
+p5.disableFriendlyErrors = true;
+
 const TIME_INCREMENT = 0.0001;
 let walkers=[]
-
-const circleSize = 350;
+const circleSize = 500;
 const it = 5;
 const goldenP = 0.5 * (1 + Math.sqrt(5)) - 1;
 let proportions = fibonacciVolumeDivisions(circleSize, it);
-
+let data;
 
 function setup() {
-  createCanvas(400, 400);
-  
+  createCanvas(800, 600);
+  colorMode(HSB);
   
   for (let i = 0; i < it; i++) {
-  
+  /*
   let hue = random(360);
   let saturation = random(50, 100);
   let brightness = random(50, 100);
   let col = color(hue, saturation, brightness);
+*/
+  let r=random(0, 255);
+  let g=random(0, 255);
+  let b=random(0, 255);
+  let col = color(r, g, b);
+
 
   let bpm = random(1000, 12000);
     
@@ -30,6 +37,29 @@ function setup() {
     walkers.push(walker)
   }
   frameRate(24);
+}
+
+
+//Get the information of the JSON and print the last value of the file
+function loadData() {
+  loadJSON('/data/data.json', (json) => {
+    data = json;
+    console.log(data[Object.keys(data).length-1]);
+  });
+}
+
+function keyPressed() {
+  // if (key === 'r' || key === 'R') {
+  //   let rh=random(40,200)
+  //   //loadData(); // Recarga los datos al presionar 'r'
+  //    for (let heart of hearts) {
+  //      let newbpm=random(rh-5,rh+5);
+  //   heart.bpmc(newbpm); 
+  // }
+  // }
+  if (key === 'd' || key === 'D') {
+    loadData(); // Recarga los datos al presionar 'd'
+  }
 }
 
 function draw() {
@@ -114,9 +144,9 @@ class Walker {
     // ellipse(70, 70, 50);
     if(this.main==0){
       //onsole.log(this.main)
-      fill(hue(this.colorH), saturation(this.colorH), brightness(this.colorH), 1);
-      ellipse(width/2, height/2, this.diameterCircle);
-      // fill(this.col);
+      fill(hue(this.colorH), saturation(this.colorH), brightness(this.colorH), 70);
+      ellipse(width/2, height/2, this.originalDiameter*2);
+     
       // ellipse(this.x, this.y, this.baseDiameter,this.baseDiameter);
   }
     for (let i = this.diameterCircle; i >= this.diameterCircle * 0.01; i--) {

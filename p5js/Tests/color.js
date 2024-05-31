@@ -3,10 +3,10 @@ let timer = 0;
  let x;
 let t=0;
 let circles=5
-let diameter=400
+let diameter=200
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 600);
   colorMode(HSB);
   cIninital=ColorP(temperature);
   cFinal=ColorP(temperature);
