@@ -1,15 +1,24 @@
 p5.disableFriendlyErrors = true;
 
 const TIME_INCREMENT = 0.0001;
-let walkers=[]
-const circleSize = 500;
+let walkers=[];
+const circleSize = 250;
 const it = 5;
 const goldenP = 0.5 * (1 + Math.sqrt(5)) - 1;
 let proportions = fibonacciVolumeDivisions(circleSize, it);
+
 let data;
 
+let noiseM;
+let audioContext;
+let analyser;
+
+let bpmArray=[]
+
+let timecounter=0;
+
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(400, 300);
   colorMode(HSB);
   
   for (let i = 0; i < it; i++) {
@@ -25,7 +34,7 @@ function setup() {
   let col = color(r, g, b);
 
 
-  let bpm = random(1000, 12000);
+  let bpm = random(9000, 9010);
     
   let walker = new Walker(diameterCircle=proportions[i],
                       noiseWalker=10,
@@ -49,30 +58,41 @@ function loadData() {
 }
 
 function keyPressed() {
-  // if (key === 'r' || key === 'R') {
-  //   let rh=random(40,200)
-  //   //loadData(); // Recarga los datos al presionar 'r'
-  //    for (let heart of hearts) {
-  //      let newbpm=random(rh-5,rh+5);
-  //   heart.bpmc(newbpm); 
-  // }
-  // }
+  if (key === 'r' || key === 'R') {
+    UpdateBPMNoise()
   if (key === 'd' || key === 'D') {
     loadData(); // Recarga los datos al presionar 'd'
+  }
+}
+}
+
+function UpdateBPMNoise(){
+  noiseM = calculateNoiseVolume();
+  bpmArray=calculateBPM(it,noiseM);
+  for (let walker of walkers) {
+    walker.updateBPM(bpmArray[walker.main]);
   }
 }
 
 function draw() {
   background(220);
   drawHearts();
+  noiseM = calculateNoiseVolume();
+  
+  fpsPreview();
 }
 
 function drawHearts() {
+  
+  // if((timecounter%240)===0){
+  //   UpdateBPMNoise();
+  // }
   background(0);
   for (let walker of walkers) {
     walker.move();
     walker.update();
   }
+  timecounter+=1;
 }
 
 /*
@@ -85,7 +105,7 @@ factorBPM - BPM
 
 ColorH - Color de la seccion
 
-Main - ID, idenficar el primer circulo
+Main - ID, idenficar el orden de cada circulo
 */
 
 class Walker {
@@ -96,7 +116,7 @@ class Walker {
     this.x=this.centerX;
     this.y=this.centerY;
     this.tx = 0;
-	this.ty = 10000;
+	  this.ty = 10000;
     this.noiseWalker=noiseWalker/100;
     this.limitRad=(this.diameterCircle+this.diameterCircle*limitDiaPer/100)/2
     this.directionX =1;
@@ -104,22 +124,16 @@ class Walker {
     
     this.angle = 0;
     this.originalDiameter=this.diameterCircle;
-    this.amplitudPulso=amplitudPulso;
+    this.amplitudPulso=amplitudPulso*2;
     this.factorBPM=factorBPM
     
     this.colorH=colorH;
     this.main=main;
   }
-  
   pulse() {
     this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
     this.angle += TIME_INCREMENT*this.factorBPM;
-  
-   
 }
-  
-  
-  
   move(){
     this.pulse();
     this.x =this.x+map(noise(this.tx), 0, 1, -1, 1)*this.noiseWalker*this.directionX;
@@ -138,39 +152,31 @@ class Walker {
   }
   
   fade() {
-    // fill(this.col)
-    // ellipse(50, 50, 50,1);
-    // fill(this.colF)
-    // ellipse(70, 70, 50);
+    noStroke();
     if(this.main==0){
-      //onsole.log(this.main)
       fill(hue(this.colorH), saturation(this.colorH), brightness(this.colorH), 70);
       ellipse(width/2, height/2, this.originalDiameter*2);
-     
-      // ellipse(this.x, this.y, this.baseDiameter,this.baseDiameter);
   }
-    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.01; i--) {
+    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i=i-2) {
         let alphaValue = map(i, this.diameterCircle, this.diameterCircle * 0.01, 0, 255 * 0.01);
         let degrade = map(i, this.diameterCircle, this.diameterCircle * 0.01, saturation(this.colorH) * 0.7, saturation(this.colorH));
-        
         let colorC=color(lerpColorBetweenTwoColors(this.colorH, this.colorH, noise(this.tx)));
-        // fill(this.col)
         fill(hue(colorC), degrade, brightness(colorC), alphaValue);
         ellipse(this.x, this.y, i);
-        // fill(colorC)
-        // ellipse(90, 90, 50);
     }
   }
 
-  
-  
+  updateBPM(newBPM){
+    this.factorBPM=newBPM;
+  }
+
   update(){
-     noStroke();
     this.fade();
    // ellipse(width/2, height/2, this.originalDiameter); testing
    // noStroke();
-    //fill(this.colorH);
-   // ellipse(this.x, this.y, this.diameterCircle);
+  //   fill(this.colorH);
+  //  ellipse(this.x, this.y, this.diameterCircle);
+  //  filter(BLUR, map(this.main,0,it,0,4));
   }
 }
 
@@ -218,5 +224,77 @@ function lerpcolor(colorI,colorF,t){
     }
   // console.log(hue(resultado[0]))
   return resultado
+}
+
+function fpsPreview(){
+  let fps = frameRate();
+  fill(255);
+  stroke(0);
+  text("FPS: " + fps.toFixed(2)+" "+noiseM, 10, height - 10);
+}
+
+navigator.mediaDevices.getUserMedia({ audio: true })
+  .then(function(stream) {
+    // Crear un AudioContext
+    audioContext = new AudioContext();
+    // Crear un nodo de entrada de audio para capturar el flujo de micrófono
+    const microphone = audioContext.createMediaStreamSource(stream);
+    // Crear un nodo de analizador para obtener el valor RMS
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+    // Conectar el nodo del micrófono al analizador
+    microphone.connect(analyser);
+    
+    // Comenzar a dibujar y calcular el volumen del ruido del ambiente
+    draw();
+  })
+  .catch(function(err) {
+    // Manejar errores
+    console.error('Error al acceder al micrófono:', err);
+  });
+
+  function calculateNoiseVolume() {
+    if (!analyser) {
+      return;
+    }
   
+    // Crear un buffer para almacenar los datos de frecuencia
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Float32Array(bufferLength);
+    analyser.getFloatTimeDomainData(dataArray);
+    
+    // Calcular el valor RMS
+    let rms = 0;
+    for (let i = 0; i < bufferLength; i++) {
+      rms += dataArray[i] * dataArray[i];
+    }
+    rms = Math.sqrt(rms / bufferLength);
+    
+    // Definir un umbral de silencio (ajústalo según sea necesario)
+    const silenceThreshold = 0.01; // Puedes ajustar este valor según tus necesidades
+    
+    // Calcular el volumen del ruido en comparación con el umbral de silencio
+    let noiseVolume = 100 * (rms / silenceThreshold);
+    // Asegurarse de que el valor esté en el rango de 0 a 100
+    // noiseVolume = Math.min(100, Math.max(0, noiseVolume));
+    noiseVolume=map(noiseVolume,0,5000,0,100);
+    
+    // Imprimir el volumen del ruido en la consola
+    
+    let noiseAVG=0
+    
+    for(let i=0;i<2;i++){
+      noiseAVG+=noiseVolume
+    }
+    return round(noiseAVG/2);
+  }
+
+function calculateBPM(iterations,noiseBPM){
+  let newBPM=[];
+  let bpmReference=map(noiseBPM,0,100,1000,12000);
+  for(let i=0;i<iterations;i++){
+    newBPM.push(random(bpmReference-10,bpmReference+10));
+
+  }
+  return newBPM;
 }
