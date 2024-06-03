@@ -22,16 +22,16 @@ function setup() {
   colorMode(HSB);
   
   for (let i = 0; i < it; i++) {
-  /*
+  
   let hue = random(360);
   let saturation = random(50, 100);
   let brightness = random(50, 100);
   let col = color(hue, saturation, brightness);
-*/
-  let r=random(0, 255);
-  let g=random(0, 255);
-  let b=random(0, 255);
-  let col = color(r, g, b);
+
+  // let r=random(0, 255);
+  // let g=random(0, 255);
+  // let b=random(0, 255);
+  // let col = color(r, g, b);
 
 
   let bpm = random(9000, 9010);
@@ -75,11 +75,11 @@ function UpdateBPMNoise(){
 }
 
 function draw() {
-  background(220);
   drawHearts();
   noiseM = calculateNoiseVolume();
-  
   fpsPreview();
+
+
 }
 
 function drawHearts() {
@@ -87,12 +87,16 @@ function drawHearts() {
   // if((timecounter%240)===0){
   //   UpdateBPMNoise();
   // }
-  background(0);
   for (let walker of walkers) {
     walker.move();
     walker.update();
   }
   timecounter+=1;
+  if( (timecounter%48)===0){
+
+    UpdateBPMNoise();
+  }
+  
 }
 
 /*
@@ -230,7 +234,7 @@ function fpsPreview(){
   let fps = frameRate();
   fill(255);
   stroke(0);
-  text("FPS: " + fps.toFixed(2)+" "+noiseM, 10, height - 10);
+  text("FPS: " + fps.toFixed(2)+" Noise: "+noiseM, 10, height - 10);
 }
 
 navigator.mediaDevices.getUserMedia({ audio: true })
