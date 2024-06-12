@@ -2,8 +2,8 @@ p5.disableFriendlyErrors = true;
 
 const TIME_INCREMENT = 0.0001;
 let walkers=[];
-const circleSize = 250;
-const it = 5;
+const circleSize = 500;
+let it = 5;
 const goldenP = 0.5 * (1 + Math.sqrt(5)) - 1;
 let proportions = fibonacciVolumeDivisions(circleSize, it);
 
@@ -13,12 +13,20 @@ let noiseM;
 let audioContext;
 let analyser;
 
-let bpmArray=[]
+let bpmArray=[];
 
 let timecounter=0;
 
+let loc={
+  lat: 0,
+  lng: 0
+};
+let temperature=0;
+let light=0;
+let UV=0;
+
 function setup() {
-  createCanvas(400, 300);
+  createCanvas(800, 600);
   colorMode(HSB);
   
   for (let i = 0; i < it; i++) {
@@ -34,12 +42,12 @@ function setup() {
   // let col = color(r, g, b);
 
 
-  let bpm = random(9000, 9010);
+  let bpm = round(random(9000, 9100));
     
   let walker = new Walker(diameterCircle=proportions[i],
                       noiseWalker=10,
-                      limitDiaPer=5-map(i,0,it,5,3),
-                      amplitudPulso=1,
+                      limitDiaPer=5,
+                      amplitudPulso=2,
                       factorBPM=bpm,
                       colorH=col,
                       main=i);
@@ -53,18 +61,26 @@ function setup() {
 function loadData() {
   loadJSON('/data/data.json', (json) => {
     data = json;
-    console.log(data[Object.keys(data).length-1]);
+    // console.log(data[Object.keys(data).length-1]);
+    temperature=data[Object.keys(data).length-1].Temperature;
+    light=data[Object.keys(data).length-1].Light;
+    UV=data[Object.keys(data).length-1].UVIndex;
+    // console.log(typeof(data[Object.keys(data).length-1].Location))
+    loc=data[Object.keys(data).length-1].Location;
   });
 }
 
 function keyPressed() {
+  console.log("key")
   if (key === 'r' || key === 'R') {
-    UpdateBPMNoise()
+    UpdateBPMNoise();
+  }
   if (key === 'd' || key === 'D') {
+    console.log("asdasd");
     loadData(); // Recarga los datos al presionar 'd'
   }
-}
-}
+  }
+
 
 function UpdateBPMNoise(){
   noiseM = calculateNoiseVolume();
@@ -78,8 +94,6 @@ function draw() {
   drawHearts();
   noiseM = calculateNoiseVolume();
   fpsPreview();
-
-
 }
 
 function drawHearts() {
@@ -87,6 +101,7 @@ function drawHearts() {
   // if((timecounter%240)===0){
   //   UpdateBPMNoise();
   // }
+  background(255);
   for (let walker of walkers) {
     walker.move();
     walker.update();
@@ -113,16 +128,16 @@ Main - ID, idenficar el orden de cada circulo
 */
 
 class Walker {
-  constructor(diameterCircle,noiseWalker,limitDiaPer,amplitudPulso,factorBPM,colorH,main) {
+    constructor(diameterCircle,noiseWalker,limitDiaPer,amplitudPulso,factorBPM,colorH,main) {
     this.centerX = width / 2;
     this.centerY = height / 2;
     this.diameterCircle=diameterCircle;
     this.x=this.centerX;
     this.y=this.centerY;
-    this.tx = 0;
-	  this.ty = 10000;
+    this.tx = random(1000);
+    this.ty = random(1000);
     this.noiseWalker=noiseWalker/100;
-    this.limitRad=(this.diameterCircle+this.diameterCircle*limitDiaPer/100)/2
+    this.limitRad=round((this.diameterCircle+this.diameterCircle*limitDiaPer/100)/2);
     this.directionX =1;
     this.directionY = 1;
     
@@ -138,30 +153,33 @@ class Walker {
     this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
     this.angle += TIME_INCREMENT*this.factorBPM;
 }
-  move(){
-    this.pulse();
-    this.x =this.x+map(noise(this.tx), 0, 1, -1, 1)*this.noiseWalker*this.directionX;
-    this.y =this.y+map(noise(this.ty), 0, 1, -1, 1)*this.noiseWalker*this.directionY;
-    this.tx += TIME_INCREMENT;
-    this.ty += TIME_INCREMENT;
-    const dSquared = Math.sqrt(distSquared(this.x, this.y, this.centerX, this.centerY));
-    if (dSquared >= this.limitRad-this.diameterCircle/2 ){
-      const angle = Math.atan2(this.y - this.centerY, this.x - this.centerX);
-      const newX = this.centerX + Math.cos(angle) * ((this.diameterCircle / 2) - 1);
-      const newY = this.centerY + Math.sin(angle) * ((this.diameterCircle / 2) - 1); // Restar 1 para mantener la esfera dentro del límite
-    // Cambiar aleatoriamente la dirección
-      this.directionX = random(-1, 1);
-      this.directionY = random(-1, 1);
-    }
+
+move(){
+  this.pulse();
+  this.x =this.x+map(noise(this.tx), 0, 1, -1, 1)*this.noiseWalker*this.directionX;
+  this.y =this.y+map(noise(this.ty), 0, 1, -1, 1)*this.noiseWalker*this.directionY;
+  this.tx += TIME_INCREMENT;
+  this.ty += TIME_INCREMENT;
+  const dSquared = Math.sqrt(distSquared(this.x, this.y, this.centerX, this.centerY));
+  if (dSquared >= this.limitRad-this.diameterCircle/2 ){
+    const angle = Math.atan2(this.y - this.centerY, this.x - this.centerX);
+    const newX = this.centerX + Math.cos(angle) * ((this.diameterCircle / 2) - 1);
+    const newY = this.centerY + Math.sin(angle) * ((this.diameterCircle / 2) - 1); // Restar 1 para mantener la esfera dentro del límite
+  // Cambiar aleatoriamente la dirección
+    this.directionX = random(-1, 1);
+    this.directionY = random(-1, 1);
   }
-  
+}
+
+
   fade() {
     noStroke();
     if(this.main==0){
       fill(hue(this.colorH), saturation(this.colorH), brightness(this.colorH), 70);
       ellipse(width/2, height/2, this.originalDiameter*2);
   }
-    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i=i-2) {
+    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i--) {
+      
         let alphaValue = map(i, this.diameterCircle, this.diameterCircle * 0.01, 0, 255 * 0.01);
         let degrade = map(i, this.diameterCircle, this.diameterCircle * 0.01, saturation(this.colorH) * 0.7, saturation(this.colorH));
         let colorC=color(lerpColorBetweenTwoColors(this.colorH, this.colorH, noise(this.tx)));
@@ -174,12 +192,33 @@ class Walker {
     this.factorBPM=newBPM;
   }
 
+  fadeRGB(){
+    colorMode(RGB)
+    //Alpha colorH
+
+    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i--) {
+
+
+      }
+
+    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i--) {
+      
+      let alphaValue = map(i, this.diameterCircle, this.diameterCircle * 0.01, 0, 255 * 0.01);
+      let degrade = map(i, this.diameterCircle, this.diameterCircle * 0.01, saturation(this.colorH) * 0.7, saturation(this.colorH));
+      let colorC=color(lerpColorBetweenTwoColors(this.colorH, this.colorH, noise(this.tx)));
+      fill(hue(colorC), degrade, brightness(colorC), alphaValue);
+      ellipse(this.x, this.y, i);
+  }
+
+
+  }
+
   update(){
-    this.fade();
-   // ellipse(width/2, height/2, this.originalDiameter); testing
-   // noStroke();
-  //   fill(this.colorH);
-  //  ellipse(this.x, this.y, this.diameterCircle);
+    this.fade();    
+  
+    // noStroke();
+    // fill(this.colorH);
+    // ellipse(this.x, this.y, this.diameterCircle);
   //  filter(BLUR, map(this.main,0,it,0,4));
   }
 }
@@ -195,7 +234,12 @@ function fibonacciVolumeDivisions(totalVolume, numDivisions) {
   let seccuenceV = [totalVolume];
   for (let i = numDivisions; i >= 2; i--) {
     aux = aux * goldenP;
-    seccuenceV.push(aux);
+    seccuenceV.push(Math.round(aux));
+    if(aux<1){
+      seccuenceV=seccuenceV.slice(0,i-1);
+      it=seccuenceV.length;
+      break;
+    }
   }
   return seccuenceV;
 }
@@ -230,12 +274,14 @@ function lerpcolor(colorI,colorF,t){
   return resultado
 }
 
+/* Function for debugging*/
 function fpsPreview(){
   let fps = frameRate();
   fill(255);
   stroke(0);
-  text("FPS: " + fps.toFixed(2)+" Noise: "+noiseM, 10, height - 10);
+  text("FPS: " + fps.toFixed(2)+" N: "+noiseM+" Lo: "+loc.lat+" "+loc.lng+" T: "+temperature+" Li: "+light+" UV: "+UV, 10, height - 10);
 }
+
 
 navigator.mediaDevices.getUserMedia({ audio: true })
   .then(function(stream) {
@@ -297,7 +343,7 @@ function calculateBPM(iterations,noiseBPM){
   let newBPM=[];
   let bpmReference=map(noiseBPM,0,100,1000,12000);
   for(let i=0;i<iterations;i++){
-    newBPM.push(random(bpmReference-10,bpmReference+10));
+    newBPM.push(round(random(bpmReference,bpmReference+100)));
 
   }
   return newBPM;
