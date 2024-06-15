@@ -1,5 +1,5 @@
 p5.disableFriendlyErrors = true;
-
+const colorFactor=0.01
 const TIME_INCREMENT = 0.0001;
 let walkers=[];
 const circleSize = 500;
@@ -25,7 +25,12 @@ let temperature=0;
 let light=0;
 let UV=0;
 
+tempScale=[];
+temperature=0
+
 function setup() {
+  tempScale=scaleTemperature();
+  console.log(tempScale)
   createCanvas(800, 600);
   colorMode(HSB);
   
@@ -69,17 +74,6 @@ function loadData() {
     loc=data[Object.keys(data).length-1].Location;
   });
 }
-
-function keyPressed() {
-  console.log("key")
-  if (key === 'r' || key === 'R') {
-    UpdateBPMNoise();
-  }
-  if (key === 'd' || key === 'D') {
-    console.log("asdasd");
-    loadData(); // Recarga los datos al presionar 'd'
-  }
-  }
 
 
 function UpdateBPMNoise(){
@@ -148,6 +142,12 @@ class Walker {
     
     this.colorH=colorH;
     this.main=main;
+    this.hueValue=hue(colorH)
+    
+    this.transColor=0;
+    
+    this.oColor=colorH
+    this.nColor=colorH
   }
   pulse() {
     this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
@@ -210,12 +210,63 @@ move(){
       ellipse(this.x, this.y, i);
   }
 
-
+  
   }
 
-  update(){
-    this.fade();    
   
+/*colorAngle
+_______________________
+Create a variation of the color based on the HUE
+the variation will be of 10°
+6/13/24*/
+colorAngle(colorH1){
+  if(this.transColor<=1){
+    this.transitionColor()
+  }
+  noStroke();
+  this.hueValue=sin(this.angle*colorFactor)*10+hue(colorH1)
+  if(this.hueValue>360){
+    this.hueValue=this.hueValue-360
+  }
+  colorMode(HSB);
+  let fillColor = color(this.hueValue,saturation(colorH1),brightness(colorH1))
+  //fill(fillColor)
+  colorMode(RGB);
+  let newColor = color(red(fillColor), green(fillColor), blue(fillColor), 200);
+  fill(newColor);
+}
+/*___________________________________*/
+
+/*FadeV3
+this.transColor+=0.0001; this line modify the transition speed
+
+_______________________
+*/
+updateColor(newColor){
+  this.nColor=newColor;
+  this.transColor=0;
+}
+
+transitionColor(){
+  if (this.oColor==this.nColor){
+    return;
+  }else{
+    this.colorH=lerpColor(color(this.oColor),color(this.nColor),this.transColor);
+    this.transColor+=0.001;
+    if(this.transColor>=1){
+      this.oColor=this.nColor
+    }
+  }
+}
+/*___________________________________*/
+  update(){
+    //this.fade();    
+    
+
+   noStroke();
+    this.colorAngle(this.colorH)
+    
+   ellipse(this.x, this.y, this.diameterCircle);
     // noStroke();
     // fill(this.colorH);
     // ellipse(this.x, this.y, this.diameterCircle);
@@ -347,4 +398,79 @@ function calculateBPM(iterations,noiseBPM){
 
   }
   return newBPM;
+}
+
+
+/*updateTemperature
+_______________________
+Update the color based on the temperature and the */
+function updateTemperature(colorMatriz, temp){
+  let limits=getTemperatureLimits(temp, tempScale)
+  var index = limits[1];
+  var rowIndex = Math.floor(index / 3); 
+  var colIndex = index % 3;           
+  for (let i = 0; i < walkers.length; i++) {
+    walkers[i].updateColor(colorMatriz[rowIndex][colIndex][i])
+  }
+}
+/*___________________________________*/
+
+/*scaleTemperature
+_______________________
+Creates a scale of temeprature between two tempearature using the provided steps.
+the result will be returned in a array with all the temepratures*/
+function scaleTemperature(tInicial=10,tFinal=45,steps=9){
+  let tempScale=[];
+  let step=(tFinal-tInicial)/(steps-1);
+  let aux=tInicial;
+  tempScale.push(aux);
+  for(let i=1;i<steps;i++){
+    aux+=step
+    tempScale.push(aux);
+  }
+  return tempScale
+}
+/*___________________________________*/
+
+/*getTemperatureLimits
+_______________________
+return the closets limits of the variable temeperature
+the result will be the index and returned in an array */
+function getTemperatureLimits(temperature, tempScale) {
+  let below = tempScale.filter(num => num <= temperature);
+  let above = tempScale.filter(num => num >= temperature);
+  let closestBelow = below.length > 0 ? Math.max(...below) : tempScale[0];
+  let closestAbove = above.length > 0 ? Math.min(...above) : tempScale[tempScale.length-1];
+  let result=[tempScale.indexOf(closestBelow),tempScale.indexOf(closestAbove)]
+  return result;
+}
+/*___________________________________*/
+
+
+
+function keyPressed() {
+  console.log("key")
+  if (key === 'r' || key === 'R') {
+    UpdateBPMNoise();
+  }
+  if (key === 'd' || key === 'D') {
+    console.log("asdasd");
+    loadData(); // Recarga los datos al presionar 'd'
+  }
+  if (key === 'c' || key === 'C') {
+    console.log("Color transitions "+ walkers[0].transColor);
+  //  walkers[0].updateColor("#1240ab")
+    console.log("from "+ walkers[0].oColor+" to"+ walkers[0].nColor);
+    console.log(temperature);
+  } 
+  if (key === 'i' || key === 'I') {
+    console.log
+    temperature=temperature+3
+    updateTemperature(aColorMatrix,temperature)
+  }
+  if (key === 'o' || key === 'O') {
+    console.log
+    temperature=temperature-3
+    updateTemperature(aColorMatrix,temperature)
+  }
 }
