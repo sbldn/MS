@@ -36,7 +36,7 @@ function setup() {
   for (let i = 0; i < it; i++) {
     let bpm = round(random(9000, 9100));
     let walker = new Walker(diameterCircle=proportions[i],
-                        noiseWalker=10,
+                        noiseWalker=20,
                         limitDiaPer=5,
                         amplitudPulso=2,
                         factorBPM=bpm,
@@ -75,10 +75,14 @@ function draw() {
 }
 
 function drawHearts() {
-  
-  // if((timecounter%240)===0){
-  //   UpdateBPMNoise();
-  // }
+/*
+  if((timecounter%240)===0){
+    UpdateBPMNoise();
+    updateTemperature(aColorMatrix, temperature);
+    uvValues(UV);
+    updateNoiseW(light);
+  }
+*/
   background(255);
   for (let walker of walkers) {
     walker.move();
@@ -139,7 +143,9 @@ class Walker {
     this.uvNext=uvInput;
   }
 
-  
+  updateNoise(newNoise){
+    this.noiseWalker=newNoise;
+  }
 
   pulse() {
     if (this.uvValue != this.uvNext) {
@@ -149,29 +155,51 @@ class Walker {
         this.uvValue -= 0.1;
       }
     }
-  
-
     // this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
    //this.diameterCircle = sin(this.angle)*map(aux,0,11,-this.originalDiameter*0.5,this.originalDiameter*0.5)*(this.amplitudPulso/50)+ this.originalDiameter;
     this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter+map(this.uvValue,0,11,-50,50);
 
     this.angle += TIME_INCREMENT*this.factorBPM;
+    this.limitRad=round((this.diameterCircle+this.diameterCircle*limitDiaPer/100)/2);
   }
   move(){
     this.pulse();
-    this.x =this.x+map(noise(this.tx), 0, 1, -1, 1)*this.noiseWalker*this.directionX;
-    this.y =this.y+map(noise(this.ty), 0, 1, -1, 1)*this.noiseWalker*this.directionY;
-    this.tx += TIME_INCREMENT;
-    this.ty += TIME_INCREMENT;
-    const dSquared = Math.sqrt(distSquared(this.x, this.y, this.centerX, this.centerY));
-    if (dSquared >= this.limitRad-this.diameterCircle/2 ){
-      const angle = Math.atan2(this.y - this.centerY, this.x - this.centerX);
-      const newX = this.centerX + Math.cos(angle) * ((this.diameterCircle / 2) - 1);
-      const newY = this.centerY + Math.sin(angle) * ((this.diameterCircle / 2) - 1); // Restar 1 para mantener la esfera dentro del límite
-      // Cambiar aleatoriamente la dirección
-      this.directionX = random(-1, 1);
-      this.directionY = random(-1, 1);
-    }
+    // this.x =this.x+map(noise(this.tx), 0, 1, -1, 1)*this.noiseWalker*this.directionX;
+    // this.y =this.y+map(noise(this.ty), 0, 1, -1, 1)*this.noiseWalker*this.directionY;
+    // this.tx += TIME_INCREMENT;
+    // this.ty += TIME_INCREMENT;
+    // const dSquared = Math.sqrt(distSquared(this.x, this.y, this.centerX, this.centerY));
+    // if (dSquared >= this.limitRad-this.diameterCircle/2 ){
+    //   const angle = Math.atan2(this.y - this.centerY, this.x - this.centerX);
+    //   const newX = this.centerX + Math.cos(angle) * ((this.diameterCircle / 2) - 1);
+    //   const newY = this.centerY + Math.sin(angle) * ((this.diameterCircle / 2) - 1); // Restar 1 para mantener la esfera dentro del límite
+    //   // Cambiar aleatoriamente la dirección
+    //   this.directionX = random(-1, 1);
+    //   this.directionY = random(-1, 1);
+    // }
+
+    this.x += map(noise(this.tx), 0, 1, -1, 1) * this.noiseWalker * this.directionX;
+  this.y += map(noise(this.ty), 0, 1, -1, 1) * this.noiseWalker * this.directionY;
+  this.tx += TIME_INCREMENT;
+  this.ty += TIME_INCREMENT;
+  
+  // Calcular distancia al centro del círculo
+  const dSquared = Math.sqrt(distSquared(this.x, this.y, this.centerX, this.centerY));
+  
+  // Verificar si el objeto ha alcanzado el límite del círculo
+  if (dSquared >= this.limitRad - this.diameterCircle / 2) {
+    // Calcular el ángulo de la posición del objeto respecto al centro del círculo
+    const angle = Math.atan2(this.y - this.centerY, this.x - this.centerX);
+    
+    // Ajustar la posición del objeto para mantenerlo dentro del límite
+    this.x = this.centerX + Math.cos(angle) * (this.limitRad - this.diameterCircle / 2);
+    this.y = this.centerY + Math.sin(angle) * (this.limitRad - this.diameterCircle / 2);
+    
+    // Cambiar aleatoriamente la dirección
+    this.directionX = random(-1, 1);
+    this.directionY = random(-1, 1);
+  }
+  
   }
 
   fade() {
@@ -449,12 +477,26 @@ function getTemperatureLimits(temperature, tempScale) {
   let result=[tempScale.indexOf(closestBelow),tempScale.indexOf(closestAbove)]
   return result;
 }
+/*___________________________________*/
 /*uvValues
 _______________________
 Update the UV values based on the value provided */
 function uvValues(uvValue){
   for (let i = 0; i < walkers.length; i++) {
     walkers[i].updateUV(uvValue);
+  }
+}
+/*___________________________________*/
+/*uvValues
+_______________________
+Update the UV values based on the value provided */
+function updateNoiseW(newNoise){
+  console.log(newNoise)
+
+  let aux=map(newNoise,0,1024,0,6)
+  console.log(aux)
+  for (let i = 0; i < walkers.length; i++) {
+    walkers[i].updateNoise(aux);
   }
 }
 /*___________________________________*/

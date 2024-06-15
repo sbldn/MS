@@ -27,5 +27,13 @@ function keyPressed() {
     UV = UV -1;
     uvValues(UV);
   }
+  if (key === 'q' || key === 'Q') {
+    light = light +100;
+    updateNoiseW(light);
+  }
+  if (key === 'w' || key === 'W') {
+    light = light -100;
+    updateNoiseW(light);
+  }
 
 }
