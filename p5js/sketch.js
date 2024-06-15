@@ -26,8 +26,7 @@ let temperature=0;
 let light=0;
 let UV=0;
 
-tempScale=[];
-temperature=0
+let tempScale=[];
 
 function setup() {
   tempScale=scaleTemperature();
@@ -133,9 +132,29 @@ class Walker {
     
     this.oColor=colorH
     this.nColor=colorH
+    this.uvValue=0;
+    this.uvNext=0;
   }
+  updateUV(uvInput){
+    this.uvNext=uvInput;
+  }
+
+  
+
   pulse() {
-    this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
+    if (this.uvValue != this.uvNext) {
+      if (this.uvValue < this.uvNext) {
+        this.uvValue += 0.1;
+      } else if (this.uvValue > this.uvNext) {
+        this.uvValue -= 0.1;
+      }
+    }
+  
+
+    // this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
+   //this.diameterCircle = sin(this.angle)*map(aux,0,11,-this.originalDiameter*0.5,this.originalDiameter*0.5)*(this.amplitudPulso/50)+ this.originalDiameter;
+    this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter+map(this.uvValue,0,11,-50,50);
+
     this.angle += TIME_INCREMENT*this.factorBPM;
   }
   move(){
@@ -203,7 +222,7 @@ the variation will be of 10°
 colorAngle(colorH1){
   if(this.main==0){
     colorMode(HSB)
-    fill(hue(this.colorH), saturation(this.colorH), brightness(this.colorH), 70);
+    fill(hue(this.colorH), saturation(this.colorH)*0.6, brightness(this.colorH), 70);
     ellipse(width/2, height/2, this.originalDiameter*2);
 }
   if(this.transColor<=1){
@@ -430,30 +449,12 @@ function getTemperatureLimits(temperature, tempScale) {
   let result=[tempScale.indexOf(closestBelow),tempScale.indexOf(closestAbove)]
   return result;
 }
-/*___________________________________*/
-
-function keyPressed() {
-  console.log("key")
-  if (key === 'r' || key === 'R') {
-    UpdateBPMNoise();
-  }
-  if (key === 'd' || key === 'D') {
-    console.log("Loding Data");
-    loadData(); // Recarga los datos al presionar 'd'
-  }
-  if (key === 'c' || key === 'C') {
-    console.log("Color transitions "+ walkers[0].transColor);
-    console.log("from "+ walkers[0].oColor+" to"+ walkers[0].nColor);
-    console.log(temperature);
-  } 
-  if (key === 'i' || key === 'I') {
-    console.log
-    temperature=temperature+3
-    updateTemperature(aColorMatrix,temperature)
-  }
-  if (key === 'o' || key === 'O') {
-    console.log
-    temperature=temperature-3
-    updateTemperature(aColorMatrix,temperature)
+/*uvValues
+_______________________
+Update the UV values based on the value provided */
+function uvValues(uvValue){
+  for (let i = 0; i < walkers.length; i++) {
+    walkers[i].updateUV(uvValue);
   }
 }
+/*___________________________________*/
