@@ -21,6 +21,7 @@ let loc={
   lat: 0,
   lng: 0
 };
+
 let temperature=0;
 let light=0;
 let UV=0;
@@ -33,34 +34,19 @@ function setup() {
   console.log(tempScale)
   createCanvas(800, 600);
   colorMode(HSB);
-  
   for (let i = 0; i < it; i++) {
-  
-  let hue = random(360);
-  let saturation = random(50, 100);
-  let brightness = random(50, 100);
-  let col = color(hue, saturation, brightness);
-
-  // let r=random(0, 255);
-  // let g=random(0, 255);
-  // let b=random(0, 255);
-  // let col = color(r, g, b);
-
-
-  let bpm = round(random(9000, 9100));
-    
-  let walker = new Walker(diameterCircle=proportions[i],
-                      noiseWalker=10,
-                      limitDiaPer=5,
-                      amplitudPulso=2,
-                      factorBPM=bpm,
-                      colorH=col,
-                      main=i);
+    let bpm = round(random(9000, 9100));
+    let walker = new Walker(diameterCircle=proportions[i],
+                        noiseWalker=10,
+                        limitDiaPer=5,
+                        amplitudPulso=2,
+                        factorBPM=bpm,
+                        colorH=aColorMatrix[0][0][i],
+                        main=i);
     walkers.push(walker)
   }
   frameRate(24);
 }
-
 
 //Get the information of the JSON and print the last value of the file
 function loadData() {
@@ -74,7 +60,6 @@ function loadData() {
     loc=data[Object.keys(data).length-1].Location;
   });
 }
-
 
 function UpdateBPMNoise(){
   noiseM = calculateNoiseVolume();
@@ -122,7 +107,7 @@ Main - ID, idenficar el orden de cada circulo
 */
 
 class Walker {
-    constructor(diameterCircle,noiseWalker,limitDiaPer,amplitudPulso,factorBPM,colorH,main) {
+  constructor(diameterCircle,noiseWalker,limitDiaPer,amplitudPulso,factorBPM,colorH,main) {
     this.centerX = width / 2;
     this.centerY = height / 2;
     this.diameterCircle=diameterCircle;
@@ -152,32 +137,30 @@ class Walker {
   pulse() {
     this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
     this.angle += TIME_INCREMENT*this.factorBPM;
-}
-
-move(){
-  this.pulse();
-  this.x =this.x+map(noise(this.tx), 0, 1, -1, 1)*this.noiseWalker*this.directionX;
-  this.y =this.y+map(noise(this.ty), 0, 1, -1, 1)*this.noiseWalker*this.directionY;
-  this.tx += TIME_INCREMENT;
-  this.ty += TIME_INCREMENT;
-  const dSquared = Math.sqrt(distSquared(this.x, this.y, this.centerX, this.centerY));
-  if (dSquared >= this.limitRad-this.diameterCircle/2 ){
-    const angle = Math.atan2(this.y - this.centerY, this.x - this.centerX);
-    const newX = this.centerX + Math.cos(angle) * ((this.diameterCircle / 2) - 1);
-    const newY = this.centerY + Math.sin(angle) * ((this.diameterCircle / 2) - 1); // Restar 1 para mantener la esfera dentro del límite
-  // Cambiar aleatoriamente la dirección
-    this.directionX = random(-1, 1);
-    this.directionY = random(-1, 1);
   }
-}
-
+  move(){
+    this.pulse();
+    this.x =this.x+map(noise(this.tx), 0, 1, -1, 1)*this.noiseWalker*this.directionX;
+    this.y =this.y+map(noise(this.ty), 0, 1, -1, 1)*this.noiseWalker*this.directionY;
+    this.tx += TIME_INCREMENT;
+    this.ty += TIME_INCREMENT;
+    const dSquared = Math.sqrt(distSquared(this.x, this.y, this.centerX, this.centerY));
+    if (dSquared >= this.limitRad-this.diameterCircle/2 ){
+      const angle = Math.atan2(this.y - this.centerY, this.x - this.centerX);
+      const newX = this.centerX + Math.cos(angle) * ((this.diameterCircle / 2) - 1);
+      const newY = this.centerY + Math.sin(angle) * ((this.diameterCircle / 2) - 1); // Restar 1 para mantener la esfera dentro del límite
+      // Cambiar aleatoriamente la dirección
+      this.directionX = random(-1, 1);
+      this.directionY = random(-1, 1);
+    }
+  }
 
   fade() {
     noStroke();
     if(this.main==0){
       fill(hue(this.colorH), saturation(this.colorH), brightness(this.colorH), 70);
       ellipse(width/2, height/2, this.originalDiameter*2);
-  }
+    }
     for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i--) {
       
         let alphaValue = map(i, this.diameterCircle, this.diameterCircle * 0.01, 0, 255 * 0.01);
@@ -195,9 +178,7 @@ move(){
   fadeRGB(){
     colorMode(RGB)
     //Alpha colorH
-
     for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i--) {
-
 
       }
 
@@ -220,6 +201,11 @@ Create a variation of the color based on the HUE
 the variation will be of 10°
 6/13/24*/
 colorAngle(colorH1){
+  if(this.main==0){
+    colorMode(HSB)
+    fill(hue(this.colorH), saturation(this.colorH), brightness(this.colorH), 70);
+    ellipse(width/2, height/2, this.originalDiameter*2);
+}
   if(this.transColor<=1){
     this.transitionColor()
   }
@@ -252,7 +238,7 @@ transitionColor(){
     return;
   }else{
     this.colorH=lerpColor(color(this.oColor),color(this.nColor),this.transColor);
-    this.transColor+=0.001;
+    this.transColor+=0.1;
     if(this.transColor>=1){
       this.oColor=this.nColor
     }
@@ -263,14 +249,14 @@ transitionColor(){
     //this.fade();    
     
 
-   noStroke();
+    noStroke();
     this.colorAngle(this.colorH)
-    
-   ellipse(this.x, this.y, this.diameterCircle);
+
+    ellipse(this.x, this.y, this.diameterCircle);
     // noStroke();
     // fill(this.colorH);
     // ellipse(this.x, this.y, this.diameterCircle);
-  //  filter(BLUR, map(this.main,0,it,0,4));
+    //  filter(BLUR, map(this.main,0,it,0,4));
   }
 }
 
@@ -302,7 +288,7 @@ function lerpColorBetweenTwoColors(color1, color2, time) {
 function ColorP(temp){
   let escale=map(temp,0,40,9,1)*30;
   firstcolor=color(random(escale-30,escale),random(40,255)*.7,random(40,255));  secondcolor=color(getHue(hue(firstcolor)),random(40,200)*.7,random(40,200));
-thirdcolor=lerpColor(firstcolor,secondcolor,random(0,1));  fourthcolor=color(getHue(hue(thirdcolor)),saturation(thirdcolor)*0.7,brightness(thirdcolor));
+  thirdcolor=lerpColor(firstcolor,secondcolor,random(0,1));  fourthcolor=color(getHue(hue(thirdcolor)),saturation(thirdcolor)*0.7,brightness(thirdcolor));
   fifthcolor=color(random(escale-30,escale),random(40,255)*0.7,random(40,255))
   return [firstcolor,secondcolor,thirdcolor,fourthcolor,fifthcolor]
 }
@@ -446,20 +432,17 @@ function getTemperatureLimits(temperature, tempScale) {
 }
 /*___________________________________*/
 
-
-
 function keyPressed() {
   console.log("key")
   if (key === 'r' || key === 'R') {
     UpdateBPMNoise();
   }
   if (key === 'd' || key === 'D') {
-    console.log("asdasd");
+    console.log("Loding Data");
     loadData(); // Recarga los datos al presionar 'd'
   }
   if (key === 'c' || key === 'C') {
     console.log("Color transitions "+ walkers[0].transColor);
-  //  walkers[0].updateColor("#1240ab")
     console.log("from "+ walkers[0].oColor+" to"+ walkers[0].nColor);
     console.log(temperature);
   } 
