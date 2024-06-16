@@ -1717,8 +1717,28 @@
             "lng": -3.7026
         },
         "Temperature": 2222,
-        "Light": 111,
-        "UVIndex": 0.0
+        "Light": 1024,
+        "UVIndex": 11
+    },
+    {
+        "Date": "14",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 0,
+        "Light": 0,
+        "UVIndex": 0
+    },
+    {
+        "Date": "14",
+        "Location": {
+            "lat": 40.4165,
+            "lng": -3.7026
+        },
+        "Temperature": 40,
+        "Light": 1024,
+        "UVIndex": 11
     }
 
 

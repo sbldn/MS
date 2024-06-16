@@ -34,7 +34,7 @@ let selectorM='e';
 
 function setup() {
   tempScale=scaleTemperature();
-  console.log(tempScale)
+  //console.log(tempScale)
   createCanvas(windowWidth, windowHeight);
   colorMode(HSB);
   for (let i = 0; i < it; i++) {
@@ -61,7 +61,12 @@ function loadData() {
     UV=data[Object.keys(data).length-1].UVIndex;
     // console.log(typeof(data[Object.keys(data).length-1].Location))
     loc=data[Object.keys(data).length-1].Location;
+
   });
+  updateTemperature(actualColorM, temperature);
+  uvValues(UV);
+  updateNoiseW(light);
+
 }
 
 function UpdateBPMNoise(){
@@ -79,15 +84,15 @@ function draw() {
 }
 
 function drawHearts() {
-
+ 
   if((timecounter%240)===0){
-    UpdateBPMNoise();
-    updateTemperature(actualColorM, temperature);
-    uvValues(UV);
-    updateNoiseW(light);
+    // UpdateBPMNoise();
+    loadData();
+  //   updateTemperature(actualColorM, temperature);
+  //   uvValues(UV);
+  //   updateNoiseW(light);
   }
 
-  background(255);
   for (let walker of walkers) {
     walker.move();
     walker.update();
@@ -252,8 +257,10 @@ this.transColor+=0.0001; this line modify the transition speed
 _______________________
 */
 updateColor(newColor){
+
   this.nColor=newColor;
   this.transColor=0;
+  this.oColor=this.colorH;
 }
 
 transitionColor(){
@@ -261,7 +268,7 @@ transitionColor(){
     return;
   }else{
     this.colorH=lerpColor(color(this.oColor),color(this.nColor),this.transColor);
-    this.transColor+=0.001;
+    this.transColor+=0.01;
     if(this.transColor>=1){
       this.oColor=this.nColor
     }
@@ -457,9 +464,7 @@ function uvValues(uvValue){
 _______________________
 Update the Noise values based on the value provided with the purpouse of change the perlin noise movement */
 function updateNoiseW(newNoise){
-  console.log(newNoise)
   let aux=map(newNoise,0,1024,0,6)
-  console.log(aux)
   for (let i = 0; i < walkers.length; i++) {
     walkers[i].updateNoise(aux);
   }
