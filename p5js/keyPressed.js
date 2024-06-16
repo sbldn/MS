@@ -13,11 +13,11 @@ function keyPressed() {
   }
   if (key === 'i' || key === 'I') {
     temperature = temperature + 3;
-    updateTemperature(aColorMatrix, temperature);
+    updateTemperature(actualColorM, temperature);
   }
   if (key === 'o' || key === 'O') {
     temperature = temperature - 3;
-    updateTemperature(aColorMatrix, temperature);
+    updateTemperature(actualColorM, temperature);
   }
   if (key === 'u' || key === 'U') {
     UV = UV +1;
@@ -34,6 +34,12 @@ function keyPressed() {
   if (key === 'w' || key === 'W') {
     light = light -100;
     updateNoiseW(light);
+  }
+  if (key === 'a' || key === 'A') {
+    console.log("Asdas")
+    actualColorM=selectMColor(selectorM)
+    
+  
   }
 
 }

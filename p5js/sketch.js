@@ -28,6 +28,10 @@ let UV=0;
 
 let tempScale=[];
 
+var actualColorM=selectMColor('a');
+let selectorM='e';
+
+
 function setup() {
   tempScale=scaleTemperature();
   console.log(tempScale)
@@ -40,7 +44,7 @@ function setup() {
                         limitDiaPer=5,
                         amplitudPulso=2,
                         factorBPM=bpm,
-                        colorH=aColorMatrix[0][0][i],
+                        colorH=actualColorM[0][0][i],
                         main=i);
     walkers.push(walker)
   }
@@ -78,7 +82,7 @@ function drawHearts() {
 /*
   if((timecounter%240)===0){
     UpdateBPMNoise();
-    updateTemperature(aColorMatrix, temperature);
+    updateTemperature(actualColorM, temperature);
     uvValues(UV);
     updateNoiseW(light);
   }
@@ -434,6 +438,7 @@ function calculateBPM(iterations,noiseBPM){
 }
 
 
+
 /*updateTemperature
 _______________________
 Update the color based on the temperature and the */
@@ -487,9 +492,9 @@ function uvValues(uvValue){
   }
 }
 /*___________________________________*/
-/*uvValues
+/*updateNoiseW
 _______________________
-Update the UV values based on the value provided */
+Update the Noise values based on the value provided */
 function updateNoiseW(newNoise){
   console.log(newNoise)
 
@@ -500,3 +505,37 @@ function updateNoiseW(newNoise){
   }
 }
 /*___________________________________*/
+
+function selectMColor(matrizNombre) {
+  var matrizC;
+  
+  switch (matrizNombre) {
+      case 'a':
+        matrizC = aColorMatrix;
+          break;
+      case 'b':
+        matrizC = bColorMatrix;
+          break;
+      case 'c':
+        matrizC = cColorMatrix;
+          break;
+      case 'd':
+        matrizC = dColorMatrix;
+          break;
+      case 'e':
+        matrizC = eColorMatrix;
+          break;
+      case 'f':
+        matrizC = fColorMatrix;
+          break;
+      case 'g':
+        matrizC = gColorMatrix;
+          break;
+      default:
+          // En caso de que se proporcione un nombre incorrecto
+          console.error("Nombre de matriz incorrecto");
+          return null;
+  }
+  
+  return matrizC;
+}
