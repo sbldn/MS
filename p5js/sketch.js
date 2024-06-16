@@ -2,7 +2,7 @@ p5.disableFriendlyErrors = true;
 const colorFactor=0.01
 const TIME_INCREMENT = 0.0001;
 let walkers=[];
-const circleSize = 500;
+let circleSize = 800;
 let it = 5;
 const goldenP = 0.5 * (1 + Math.sqrt(5)) - 1;
 let proportions = fibonacciVolumeDivisions(circleSize, it);
@@ -35,7 +35,7 @@ let selectorM='e';
 function setup() {
   tempScale=scaleTemperature();
   console.log(tempScale)
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);
   colorMode(HSB);
   for (let i = 0; i < it; i++) {
     let bpm = round(random(9000, 9100));
@@ -79,14 +79,14 @@ function draw() {
 }
 
 function drawHearts() {
-/*
+
   if((timecounter%240)===0){
     UpdateBPMNoise();
     updateTemperature(actualColorM, temperature);
     uvValues(UV);
     updateNoiseW(light);
   }
-*/
+
   background(255);
   for (let walker of walkers) {
     walker.move();
@@ -220,8 +220,7 @@ the variation will be of 10°
 colorAngle(colorH1){
   if(this.main==0){
     colorMode(HSB)
-    fill(hue(this.colorH), saturation(this.colorH)*0.6, brightness(this.colorH), 70);
-    ellipse(width/2, height/2, this.originalDiameter*2);
+    background(hue(this.colorH), saturation(this.colorH)*0.6, brightness(this.colorH), 70);
 }
   if(this.transColor<=1){
     this.transitionColor()
@@ -395,12 +394,9 @@ function calculateBPM(iterations,noiseBPM){
   let bpmReference=map(noiseBPM,0,100,1000,12000);
   for(let i=0;i<iterations;i++){
     newBPM.push(round(random(bpmReference,bpmReference+100)));
-
   }
   return newBPM;
 }
-
-
 
 /*updateTemperature
 _______________________
@@ -446,6 +442,7 @@ function getTemperatureLimits(temperature, tempScale) {
   return result;
 }
 /*___________________________________*/
+
 /*uvValues
 _______________________
 Update the UV values based on the value provided */
@@ -455,12 +452,12 @@ function uvValues(uvValue){
   }
 }
 /*___________________________________*/
+
 /*updateNoiseW
 _______________________
-Update the Noise values based on the value provided */
+Update the Noise values based on the value provided with the purpouse of change the perlin noise movement */
 function updateNoiseW(newNoise){
   console.log(newNoise)
-
   let aux=map(newNoise,0,1024,0,6)
   console.log(aux)
   for (let i = 0; i < walkers.length; i++) {
@@ -469,10 +466,12 @@ function updateNoiseW(newNoise){
 }
 /*___________________________________*/
 
-function selectMColor(matrizNombre) {
+/*selectMColor
+_______________________
+Allow the change to switch to other color theme */
+function selectMColor(matrizNanme) {
   var matrizC;
-  
-  switch (matrizNombre) {
+  switch (matrizNanme) {
       case 'a':
         matrizC = aColorMatrix;
           break;
@@ -499,6 +498,5 @@ function selectMColor(matrizNombre) {
           console.error("Nombre de matriz incorrecto");
           return null;
   }
-  
   return matrizC;
 }
