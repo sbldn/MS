@@ -159,8 +159,8 @@ class Walker {
         this.uvValue -= 0.1;
       }
     }
-    // this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
-   //this.diameterCircle = sin(this.angle)*map(aux,0,11,-this.originalDiameter*0.5,this.originalDiameter*0.5)*(this.amplitudPulso/50)+ this.originalDiameter;
+    //this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter;
+    //this.diameterCircle = sin(this.angle)*map(aux,0,11,-this.originalDiameter*0.5,this.originalDiameter*0.5)*(this.amplitudPulso/50)+ this.originalDiameter;
     this.diameterCircle = sin(this.angle)* this.originalDiameter*(this.amplitudPulso/100)+this.originalDiameter+map(this.uvValue,0,11,-50,50);
 
     this.angle += TIME_INCREMENT*this.factorBPM;
@@ -182,7 +182,7 @@ class Walker {
     //   this.directionY = random(-1, 1);
     // }
 
-    this.x += map(noise(this.tx), 0, 1, -1, 1) * this.noiseWalker * this.directionX;
+  this.x += map(noise(this.tx), 0, 1, -1, 1) * this.noiseWalker * this.directionX;
   this.y += map(noise(this.ty), 0, 1, -1, 1) * this.noiseWalker * this.directionY;
   this.tx += TIME_INCREMENT;
   this.ty += TIME_INCREMENT;
@@ -206,43 +206,9 @@ class Walker {
   
   }
 
-  fade() {
-    noStroke();
-    if(this.main==0){
-      fill(hue(this.colorH), saturation(this.colorH), brightness(this.colorH), 70);
-      ellipse(width/2, height/2, this.originalDiameter*2);
-    }
-    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i--) {
-      
-        let alphaValue = map(i, this.diameterCircle, this.diameterCircle * 0.01, 0, 255 * 0.01);
-        let degrade = map(i, this.diameterCircle, this.diameterCircle * 0.01, saturation(this.colorH) * 0.7, saturation(this.colorH));
-        let colorC=color(lerpColorBetweenTwoColors(this.colorH, this.colorH, noise(this.tx)));
-        fill(hue(colorC), degrade, brightness(colorC), alphaValue);
-        ellipse(this.x, this.y, i);
-    }
-  }
 
   updateBPM(newBPM){
     this.factorBPM=newBPM;
-  }
-
-  fadeRGB(){
-    colorMode(RGB)
-    //Alpha colorH
-    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i--) {
-
-      }
-
-    for (let i = this.diameterCircle; i >= this.diameterCircle * 0.9; i--) {
-      
-      let alphaValue = map(i, this.diameterCircle, this.diameterCircle * 0.01, 0, 255 * 0.01);
-      let degrade = map(i, this.diameterCircle, this.diameterCircle * 0.01, saturation(this.colorH) * 0.7, saturation(this.colorH));
-      let colorC=color(lerpColorBetweenTwoColors(this.colorH, this.colorH, noise(this.tx)));
-      fill(hue(colorC), degrade, brightness(colorC), alphaValue);
-      ellipse(this.x, this.y, i);
-  }
-
-  
   }
 
   
@@ -269,14 +235,21 @@ colorAngle(colorH1){
   let fillColor = color(this.hueValue,saturation(colorH1),brightness(colorH1))
   //fill(fillColor)
   colorMode(RGB);
-  let newColor = color(red(fillColor), green(fillColor), blue(fillColor), 200);
+  let control=.7
+  for(let j = this.diameterCircle; j>=this.diameterCircle*control;j=j-1 ){
+    let newColor = color(red(fillColor), green(fillColor), blue(fillColor),
+                      map(j,this.diameterCircle,this.diameterCircle*0.8,0,26));
+    fill(newColor);
+    ellipse(this.x, this.y, j);
+    }
+  let newColor = color(red(fillColor), green(fillColor), blue(fillColor),255);
   fill(newColor);
+  ellipse(this.x, this.y, this.diameterCircle*control);
 }
 /*___________________________________*/
 
 /*FadeV3
 this.transColor+=0.0001; this line modify the transition speed
-
 _______________________
 */
 updateColor(newColor){
@@ -289,7 +262,7 @@ transitionColor(){
     return;
   }else{
     this.colorH=lerpColor(color(this.oColor),color(this.nColor),this.transColor);
-    this.transColor+=0.1;
+    this.transColor+=0.001;
     if(this.transColor>=1){
       this.oColor=this.nColor
     }
@@ -297,20 +270,10 @@ transitionColor(){
 }
 /*___________________________________*/
   update(){
-    //this.fade();    
-    
-
     noStroke();
     this.colorAngle(this.colorH)
-
-    ellipse(this.x, this.y, this.diameterCircle);
-    // noStroke();
-    // fill(this.colorH);
-    // ellipse(this.x, this.y, this.diameterCircle);
-    //  filter(BLUR, map(this.main,0,it,0,4));
   }
 }
-
 function distSquared(x1, y1, x2, y2) {
   const dx = x2 - x1;
   const dy = y2 - y1;
